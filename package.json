@@ -1,0 +1,29 @@
+{
+  "name": "online-store",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "npm run build-watch & npm run start-server",
+    "start-server": "nodemon ./server/app.js -e html,js,css --ignore public",
+    "build-watch": "webpack -w",
+    "start": "echo 'Running server for production - developers, use npm run start-dev for development' && node main",
+    "seed": "node seed.js"
+  },
+  "keywords": [],
+  "author": "Alex",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
