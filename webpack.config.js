@@ -1,15 +1,13 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin') 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  watch: false,
   mode: 'development',
   entry: './app/main.js',
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'webpack')
+    path: __dirname + '/public', // assumes your bundle.js will also be in the root of your project folder
+    filename: 'bundle.js'
   },
-
   //babel
   module: {
     rules: [
@@ -17,13 +15,20 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader"
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       }
     ]
   },
   //HtmlWebpackPlugin
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'public/index.html'
-    })
-  ] 
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     template: 'public/index.html'
+  //   })
+  // ] 
 }

@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Routes from './components/Routes';
+
 
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
+  
+  <Routes />,
   document.getElementById('root')
 );
