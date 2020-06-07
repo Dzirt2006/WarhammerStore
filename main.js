@@ -1,3 +1,4 @@
+'use strict'
 
 const {db} = require('./server/db')
 const app = require('./server')

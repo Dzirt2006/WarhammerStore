@@ -10,7 +10,7 @@ const Product = props => {
             <p>description:{product.description}</p>
             <p>amount: {product.total_amount}</p>
             <p>price: {product.price}</p>
-            <button onClick=''>Buit It!</button>
+            <button onClick={props.onClick(product)}>Buy It!</button>
         </div>
     )
 };

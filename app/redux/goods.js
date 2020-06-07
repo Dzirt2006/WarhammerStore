@@ -28,7 +28,8 @@ export const fetchGoods = () => async dispatch => {
 export const fetchSpecific = (id) => async dispatch => {
     try {
         const { data } = await axios.get(`/api/goods/${id}`)
-        const ation = setSpecificGood(data);
+        const action = setSpecificGood(data);
+        dispatch(action);
     } catch (error) {
         console.error(`Fetch ${id} Stuff failed`, error);
     }

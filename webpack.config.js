@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: './app/main.js',
+  entry: ['babel-polyfill', './app/main.js'],
   output: {
     path: __dirname + '/public', // assumes your bundle.js will also be in the root of your project folder
     filename: 'bundle.js'

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchGoods} from '../redux/goods'
+import { fetchGoods } from '../redux/goods'
+import { addProductAction } from '../redux/shoppingCart';
 import { Link } from 'react-router-dom';
 import Product from './Product';
 
@@ -10,16 +11,20 @@ export class AllGoods extends React.Component {
     this.props.getGoods();
   }
 
+  handleOnClickBuyIt = params => event => {
+    this.props.addProduct(params);
+    console.log(this.state)
+  }
 
   render() {
     console.log(this.props)
     const goods = this.props.goods.all;
     if (goods.length > 0) {
       return (
-        <div> 
+        <div>
           <div className='container'>
             {goods.map(product => (
-              <Product staff={product} key={product.id} />
+              <Product staff={product} key={product.id} onClick={this.handleOnClickBuyIt}/>
             ))
             } </div >
         </div>
@@ -36,13 +41,15 @@ export class AllGoods extends React.Component {
 
 const mapState = state => {
   return {
-    goods: state.goods
+    goods: state.goods,
+    order: state.order,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getGoods: () => dispatch(fetchGoods())
+    getGoods: () => dispatch(fetchGoods()),
+    addProduct: (product) => dispatch(addProductAction(product)),
   };
 };
 
