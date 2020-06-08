@@ -18,9 +18,9 @@ const good2={
 }
 
 const good3={
-  name: 'Horus The Warmaster',
-    total_amount: 2,
-    price: 199,
+  name: 'Sanguinius',
+    total_amount: 4,
+    price: 267.70,
     description: 'Sanguinius, also known as the "Great Angel" and the "Brightest One" during his lifetime, was the Primarch of the Blood Angels Legion of Space Marines. He was killed during the climax of the Horus Heresy at the Battle of Terra defending the Emperor of Mankind from the Warmaster Horus aboard his flagship, the Battle Barge Vengeful Spirit.',
     imgUrl: 'https://i.etsystatic.com/22715570/r/il/3f9193/2345945189/il_794xN.2345945189_c2j9.jpg'
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchGoods } from '../redux/goods'
-import { addProductAction } from '../redux/shoppingCart';
+import { addProductAction, addAmountOfProduct } from '../redux/shoppingCart';
 import { Link } from 'react-router-dom';
 import Product from './Product';
 
@@ -11,9 +11,17 @@ export class AllGoods extends React.Component {
     this.props.getGoods();
   }
 
-  handleOnClickBuyIt = params => event => {
-    this.props.addProduct(params);
-    console.log(this.state)
+  handleOnClickBuyIt = params => async event => {
+    if (this.props.order.products.length > 0) {
+      const id = this.props.order.products.map(product => (product.id));
+      if (id.includes(params.id)) {
+        this.props.addAmount(params.id);
+      } else {
+        this.props.addProduct(params);
+      }
+    } else {
+      this.props.addProduct(params);
+    }
   }
 
   render() {
@@ -24,7 +32,7 @@ export class AllGoods extends React.Component {
         <div>
           <div className='container'>
             {goods.map(product => (
-              <Product staff={product} key={product.id} onClick={this.handleOnClickBuyIt}/>
+              <Product staff={product} key={product.id} onClick={this.handleOnClickBuyIt} />
             ))
             } </div >
         </div>
@@ -50,6 +58,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getGoods: () => dispatch(fetchGoods()),
     addProduct: (product) => dispatch(addProductAction(product)),
+    addAmount: (id) => dispatch(addAmountOfProduct(id)),
   };
 };
 
