@@ -37,13 +37,13 @@ export const fetchSpecific = (id) => async dispatch => {
 
 
 //initial state
-const initialStore = {
+const initialState = {
     all: [],
     specific: []
 }
 
 //reducer
-export default function goodsReducer(state = initialStore, action) {
+export default function goodsReducer(state = initialState, action) {
     switch (action.type) {
         case SET_GOODS:
             return { ...state, all: action.goods }

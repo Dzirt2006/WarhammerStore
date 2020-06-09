@@ -1,5 +1,5 @@
 const { green, red } = require('chalk');
-const { db, Goods } = require('./server/db');
+const { db, Goods,Users } = require('./server/db');
 
 const good1 = {
     name: 'Magnus The Red',
@@ -25,12 +25,18 @@ const good3={
     imgUrl: 'https://i.etsystatic.com/22715570/r/il/3f9193/2345945189/il_794xN.2345945189_c2j9.jpg'
 }
 
+const user1={
+  email:'alex@mail.com',
+  password:1234
+}
+
 const seed =async()=>{
     try{
         await db.sync({force:true});
         await Goods.create(good1);
         await Goods.create(good2);
         await Goods.create(good3);
+        await Users.create(user1);
     }catch(err){
         console.log(red(err));
     }

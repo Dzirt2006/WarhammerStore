@@ -54,7 +54,7 @@ const mapState = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getGoods: () => dispatch(fetchGoods()),
     addProduct: (product) => dispatch(addProductAction(product)),
