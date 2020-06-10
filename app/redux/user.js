@@ -16,7 +16,6 @@ const gotMe = (user) => ({
 export const getMe = () => dispatch => {
     return axios.get('/api/auth/me')
       .then(res => res.data)
-      .then(user => dispatch(gotMe(user)))
       .catch(console.error.bind(console))
   }
 export const login = (formData) => dispatch => {

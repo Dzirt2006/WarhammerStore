@@ -7,8 +7,8 @@ import {getMe} from '../redux/user'
 export class ShoppingCart extends React.Component {
 
     handleOnClick = () => async event => {
-        console.log(!!this.props.getAuth().email)
-        if(!this.props.getAuth().email){
+        console.log('AUtH',await this.props.getAuth())
+        if(!this.props.user.user.email){
             console.log('Complete!');
             this.props.history.push('/login');
         }else{
@@ -68,6 +68,7 @@ export class ShoppingCart extends React.Component {
 const mapState = state => {
     return {
         order: state.order,
+        user:state.user,
     };
 };
 
