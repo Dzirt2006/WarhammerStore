@@ -3,10 +3,15 @@ const path = require('path')
 const app = express()
 const session = require('express-session')
 const passport = require('passport')
-const Users =require('./db/user')
+const Users = require('./db/user')
+const morgan = require('morgan');
+
+
 // body parsing middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
 
 // Session middleware
 app.use(session({
@@ -24,14 +29,14 @@ app.use(passport.session())
 
 // after we find or create a user, we 'serialize' our user on the session
 passport.serializeUser((user, done) => {
-  console.log('User',user)
+  console.log('User', user)
   done(null, user.id)
 })
 
 // If we've serialized the user on our session with an id, we look it up here
 // and attach it as 'req.user'.
 passport.deserializeUser(async (id, done) => {
-  console.log("U/:",id)
+  console.log("U/:", id)
   try {
     const user = await Users.findByPk(id)
     done(null, user)
@@ -39,7 +44,7 @@ passport.deserializeUser(async (id, done) => {
     done(err)
   }
 })
-  
+
 app.use(express.static(path.join(__dirname, '../public')))
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'))

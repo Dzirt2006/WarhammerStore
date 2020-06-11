@@ -16,7 +16,6 @@ router.put('/login', async (req, res, next) => {
         password: req.body.password
       }
     })
-    console.log(user);
     if (user[0]) {
       req.login(user[0], (err) => err ? next(err) : res.json(user[0]))
     } else {
