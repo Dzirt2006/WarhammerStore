@@ -5,10 +5,15 @@ import axios from 'axios'
 
 //action
 const GET_USER = 'GET_USER'
+const NEW_USER='NEW_USER'
 
 //action creator
 const gotMe = (user) => ({
   type: GET_USER,
+  user
+})
+const newUser=(user)=>({
+  type: NEW_USER,
   user
 })
 
@@ -24,6 +29,14 @@ export const login = (formData) => dispatch => {
       .then(user => dispatch(gotMe(user)))
       .catch(console.error.bind(console))
   }
+export const createUser=async (user)=>{
+  try {
+    console.log('THUNK',user)
+    await axios.put('/api/user/',user)
+  }catch(err){
+    console.log('Cant create new User');
+  }
+} 
 
   const initialState = {
     user: {}

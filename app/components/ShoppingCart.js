@@ -2,55 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import App from './test'
 import {getMe} from '../redux/user'
+import ProductTray from './ProductsTray';
 
 
 export class ShoppingCart extends React.Component {
 
     handleOnClick = () => async event => {
-        console.log('AUtH',await this.props.getAuth())
-        if(!this.props.user.user.email){
-            console.log('Complete!');
+        console.log(await this.props.getAuth());
+        const auth=await this.props.getAuth()
+        if(!auth.email){
             this.props.history.push('/login');
         }else{
-            this.props.history.push('/');
-        }
-        
+            this.props.history.push('/submit_order');
+        }    
     }
     render() {
-        console.log(this.props)
         const order = this.props.order.products;
-        let totalAmount = 0;
-        order.map(product => {
-            totalAmount += product.price * product.total_amount;
-        })
         if (order.length > 0) {
             return (
                 <div>
                     <center> <h1>Shopping Cart</h1>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>amout</th>
-                                    <th>Price</th>
-                                </tr>
-                                {order.map(product => (
-                                    <tr key={product.id}>
-                                        <td><img src={product.imgUrl} width="200" height="200" /></td>
-                                        <td>{product.name}</td>
-                                        <td>{product.total_amount}</td>
-                                        <td>{product.price * product.total_amount}</td>
-                                    </tr>
-                                ))}
-                                <tr>
-                                    <td colSpan="3" align="right"><b>Subtotal:</b></td>
-                                    <td>{totalAmount}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button onClick={this.handleOnClick()}>Submit</button>
+                        <ProductTray products={order} />
                     </center>
+                    <button onClick={this.handleOnClick()}>Submit</button>
                 </div>
             );
         } else {

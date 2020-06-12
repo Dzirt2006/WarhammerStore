@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import ShowAllGoods from './ShowAllGoods'
 import ShoppingCart from './ShoppingCart'
 import Login from './Login'
+import SubmitOrder from './SubmitOrder'
 
 const Routes = () => {
     return (
@@ -17,6 +18,7 @@ const Routes = () => {
                     <Route exact path="/goods" render={() => (<ShowAllGoods />)} />
                     <Route exact path="/shopping_cart" component={ShoppingCart} />
                     <Route exact path="/login" component={Login} />
+                    <Route exact path="/submit_order" component={SubmitOrder} />
                 </Switch>
             </div>
         </Router>

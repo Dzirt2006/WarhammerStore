@@ -33,10 +33,11 @@ const user1={
 const seed =async()=>{
     try{
         await db.sync({force:true});
-        await Goods.create(good1);
+        const g1=await Goods.create(good1);
         await Goods.create(good2);
         await Goods.create(good3);
-        await Users.create(user1);
+        const u1=await Users.create(user1);
+        await g1.addUser(u1);
     }catch(err){
         console.log(red(err));
     }
